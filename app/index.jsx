@@ -1,21 +1,37 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Slider} from 'amazeui-react';
+import {AvgGrid, Button, Dropdown, ModalTrigger, Modal} from 'amazeui-react';
 
-var data = [{img:"http://s.amazeui.org/media/i/demos/bing-1.jpg",thumb:"http://s.amazeui.org/media/i/demos/bing-1.jpg",desc:'<h2 class="am-slider-title">远方 有一个地方 那里种有我们的梦想</h2><p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内</p>'},{img:"http://s.amazeui.org/media/i/demos/bing-2.jpg",thumb:"http://s.amazeui.org/media/i/demos/bing-2.jpg",desc:'<h2 class="am-slider-title">某天 也许会相遇 相遇在这个好地方</h2><p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内</p>'},{img:"http://s.amazeui.org/media/i/demos/bing-3.jpg",thumb:"http://s.amazeui.org/media/i/demos/bing-3.jpg",desc:'<h2 class="am-slider-title">不要太担心 只因为我相信 终会走过这条遥远的道路</h2><p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内</p>'},{img:"http://s.amazeui.org/media/i/demos/bing-4.jpg",thumb:"http://s.amazeui.org/media/i/demos/bing-4.jpg",desc:'<h2 class="am-slider-title">OH PARA PARADISE 是否那么重要 你是否那么地遥远</h2><p>内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内容内</p>'}];
+const styles = {
+  mainBlock:{
+    padding:"200px 50px 0 50px",
+  }
+}
 
-var sliderIntance = (
-<Slider theme="d3">
-  {data.map(function(item, k) {
-    return (
-      <Slider.Item key={k} thumbnail={item.thumb}>
-        <img src={item.img} />
-        <div
-          className="am-slider-desc"
-          dangerouslySetInnerHTML={{__html: item.desc}} />
-      </Slider.Item>
-    );
-  })}
-</Slider>);
+const modalInfo = <Modal title="还没搞过来">旧的WorldPress站点正在搬移中.</Modal>;
+const modalPay = <Modal title="向我付款"><div><p>左边支付宝, 右边微信, 请先加好友再转账.</p><img src="/images/alipay.png" width="50%" /><img src="/images/wechat.jpg" width="50%" /></div></Modal>;
 
-ReactDOM.render(sliderIntance, document.getElementById('page'));
+const ThisPage = (
+  <AvgGrid sm={1} md={3} lg={3} className="am-thumbnails" style={styles.mainBlock}>
+    <li>
+      <Button amStyle="primary" block onClick={()=>window.open("http://blog.leanote.com/astwyg@outlook.com")}>笔记本</Button>
+    </li>
+    <li><ModalTrigger modal={modalInfo}><Button amStyle="default" block>旧博客</Button></ModalTrigger></li>
+    <li><ModalTrigger modal={modalPay}><Button amStyle="secondary" block>向我付款</Button></ModalTrigger></li>
+    <li><Button amStyle="success" block onClick={()=>window.open("https://outlook.live.com/owa//calendar/8d120968-ff3c-488e-a036-2d0056de74cb/8888d70a-7b67-4096-9ed9-a1d732e362e4/cid-820FF0510D3252E0/index.html")}>查看日程</Button></li>
+    <li>
+      <Dropdown title="链接" btnStyle="warning" toggleClassName="am-btn-block" className="am-btn-block">
+        <Dropdown.Item onClick={()=>window.open("http://www.6vdata.com/")}>六维数据</Dropdown.Item>
+        <Dropdown.Item onClick={()=>window.open("http://zhijiexia.vipsinaapp.com/")}>微信站点</Dropdown.Item>
+      </Dropdown>
+    </li>
+    <li>
+      <Dropdown title="社交网站" btnStyle="danger" toggleClassName="am-btn-block" className="am-btn-block">
+        <Dropdown.Item onClick={()=>window.open("https://github.com/astwyg")}>github</Dropdown.Item>
+        <Dropdown.Item onClick={()=>window.open("http://weibo.com/p/1005052633534325")}>微博</Dropdown.Item>
+      </Dropdown>
+    </li>
+  </AvgGrid>
+);
+
+ReactDOM.render(ThisPage, document.getElementById('page'));

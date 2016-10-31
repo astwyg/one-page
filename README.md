@@ -2,7 +2,7 @@
 personnel (static) homepage using amazeui-react
 
 # sample site
-[my site](www.ysgh.net)
+[my site](http://www.ysgh.net/)
 
 # how to use
 1. clone this repo.
